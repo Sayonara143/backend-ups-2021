@@ -11,7 +11,7 @@ require('dotenv').config()
 
 import * as config from './app/helpers/config'
 mongoose.set('useCreateIndex', true)
-mongoose.connect(String('mongodb://localhost:27017/upsDB?readPreference=primary&appname=MongoDB%20Compass&ssl=false'), { useUnifiedTopology: true, useNewUrlParser: true  },  () => {
+mongoose.connect(String(config.db.url), { useUnifiedTopology: true, useNewUrlParser: true  },  () => {
   console.log('[MONGODB] connect'.white)
 })
 
@@ -37,7 +37,7 @@ const startServer = async () =>{
   
   const server = http.createServer(app);
   
-  server.listen(config.server.port, '192.168.43.57', async ()=>{
+  server.listen(config.server.port, '10.62.4.91', async ()=>{
     console.log('[SERVER] start'.white)
   })
 }
