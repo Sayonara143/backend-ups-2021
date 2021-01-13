@@ -20,7 +20,7 @@ function hashPromise(hashingData) {
 }
 
 const checkInput = (input) => {
-  if (input.name === null || input.phone === null || input.timeCode === null || input.surname === null || input.patronymic === null || input.password === null ) {
+  if (input.name === null || input.phone === null || input.timeCode === null || input.infoTCG === null ) {
     return false
   }
   else return true
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     return
   }
 
-  const { name, surname, patronymic, phone, password, timeCode} = data
+  const { name, phone, timeCode, infoTCG} = data
 
   try {
     const user = await UserAPI.findUserByPhone(phone)
@@ -44,14 +44,10 @@ router.post('/', async (req, res) => {
         res.status(409).json({ info: 'Код не был отправлен' })
       } else {
         if(code.value === timeCode){
-          const hashParams = await(hashPromise({ password: password }))
           const newUserData = {
             name: name,
-            surname: surname,
-            patronymic: patronymic,
             phone: phone,
-            passwordHash: hashParams.hash,
-            salt: hashParams.salt
+            infoTCG: infoTCG
           }
           await UserAPI.createUser(newUserData)
           res.sendStatus(200)
@@ -59,7 +55,6 @@ router.post('/', async (req, res) => {
           res.status(409).json({info: 'неверный код'})
         }
       }
-      
     }
     else {
       res.status(409).json({ info: 'номер уже зареган' })

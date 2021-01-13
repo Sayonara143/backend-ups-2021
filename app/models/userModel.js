@@ -3,25 +3,13 @@ const Schema = mongoose.Schema
 
 // Schemas
 const userModel = new Schema({
-	surname: {
-		type: String,
-		required: true
-	},
 	name: {
 	  type: String,
     required: true
   },
-  patronymic:{
+  infoTCG:{
     type: String,
     required: true
-  },
-	passwordHash: {
-		type: String,
-		required: true
-  },
-	salt:{
-		type: String,
-		required: true
   },
 	date: {
 		type: Date,
@@ -31,13 +19,17 @@ const userModel = new Schema({
     type: String,
     required: true
   },
-  linkWater: {
+  linkWaterCold: {
     type: String,
     default: ''
   },
-  linkElectric: {
+  linkWaterHot: {
     type: String,
     default: ''
+  },
+  mode:{
+    type:String,
+    default: '1'
   }
 })
 
@@ -45,13 +37,9 @@ const UserModel = mongoose.model('UserModel', userModel)
 
 const createUser = (userData) =>{
     const newUsersModel = new UserModel({
-        surname: userData.surname,
         name: userData.name,
-        patronymic: userData.patronymic,
-        login: userData.login,
-        passwordHash: userData.passwordHash,
-        salt: userData.salt,
-        phone: userData.phone
+        phone: userData.phone,
+        infoTCG: userData.infoTCG
     })
     return newUsersModel.save()
 }
@@ -65,11 +53,22 @@ const deleteUserByLogin = (login)=>{
 const findUserByPhone = (phone) => {
   return UserModel.findOne({phone: phone}, {})
 }
-const UpdateUserLinkWater = (phone, idSensor) => {
-	return UserModel.updateOne({phone: phone},{linkWater: idSensor }, {upsert: false})
+const findUserByLinkHot = (idSensor) => {
+  return UserModel.findOne({linkWaterHot: idSensor}, {})
 }
-const UpdateUserlinkElectric = (phone, idSensor) => {
-	return UserModel.updateOne({phone: phone},{linkElectric: idSensor }, {upsert: false})
+
+const findUserByLinkCold = (idSensor) => {
+  return UserModel.findOne({linkWaterCold: idSensor}, {})
+}
+
+const UpdateUserLinkWaterHot = (phone, idSensor) => {
+	return UserModel.updateOne({phone: phone},{linkWaterHot: idSensor }, {upsert: false})
+}
+const UpdateUserlinkWaterCold = (phone, idSensor) => {
+	return UserModel.updateOne({phone: phone},{linkWaterCold: idSensor }, {upsert: false})
+}
+const UpdateUserSetMode = (phone, mode) => {
+	return UserModel.updateOne({phone: phone},{mode: mode }, {upsert: false})
 }
 // settings change users
 const UpdateUsersPasswordHashSalt = (login, passwordHash, salt) => {
@@ -86,8 +85,11 @@ export{
     createUser,
     deleteUserByLogin,
     findUserByPhone,
-    UpdateUserLinkWater,
-    UpdateUserlinkElectric,
+    UpdateUserLinkWaterHot,
+    UpdateUserlinkWaterCold,
+    UpdateUserSetMode,
+    findUserByLinkCold,
+    findUserByLinkHot,
     //settings users change
     UpdateUsersPasswordHashSalt,
     deleteUsersByLogin

@@ -4,7 +4,10 @@ async function preparation (path) {
   return Jimp.read(path)
     .then(image => {
       return image
+        .normalize()
         .greyscale() // set greyscale
+        .contrast(0.6)
+        .greyscale()
         .write(path) // save
     })
     .catch(err => {
