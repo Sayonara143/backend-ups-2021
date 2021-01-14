@@ -5,15 +5,18 @@ import mongoose  from 'mongoose'
 import cors from 'cors'
 import colors from 'colors'
 import fs from 'fs'
+import vision from '@google-cloud/vision'
 
 
 require('dotenv').config()
 
 import * as config from './app/helpers/config'
-mongoose.set('useCreateIndex', true)
+mongoose.set('useCreateIndex', true)//'mongodb://localhost:27017/upsDB?readPreference=primary&appname=MongoDB%20Compass&ssl=false'
 mongoose.connect(String('mongodb://localhost:27017/upsDB?readPreference=primary&appname=MongoDB%20Compass&ssl=false'), { useUnifiedTopology: true, useNewUrlParser: true  },  () => {
   console.log('[MONGODB] connect'.white)
 })
+
+const client = new vision.ImageAnnotatorClient()
 
 const corsOptions = {
 	origin: ['*', 'http://localhost:3000'],
@@ -40,5 +43,9 @@ const startServer = async () =>{
   server.listen(config.server.port, '192.168.43.57', async ()=>{
     console.log('[SERVER] start'.white)
   })
+  const [result] = await client.textDetection('lol3.jpg')
+  const detections = result.textAnnotations
+  console.log('Text:')
+  detections.forEach(text => console.log(text.description))
 }
 startServer()

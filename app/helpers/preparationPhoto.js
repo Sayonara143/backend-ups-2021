@@ -6,7 +6,7 @@ async function preparation (path) {
       return image
         .normalize()
         .greyscale() // set greyscale
-        .contrast(0.6)
+        .contrast(0.4)
         .greyscale()
         .write(path) // save
     })

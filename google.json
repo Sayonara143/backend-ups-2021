@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "eastern-lattice-269717",
+  "private_key_id": "ddb7dcb988d29a459f475bf1f1180e08552fa6a6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDTdptVyxHuch0V\nHgwm3q3slR9RQX3XZO6wHx3xnstGd305zZPnI0ugxHiL3w28LDuXn6qAP9nUYQkb\nHNbJUsRhK09m+ZlugeNQc626qG9mOejMJbjw5j2f3Rlvncd0mCIK5i/WzfK7vfnr\nVy1HVnP0LSVC48zwtWWJ99gCu+U9LiMQtWyhToZEv7otBDdZWmv4ryTqAJREJ5An\nHftnXChQteCXX5Y0eVlNz4uNCEeUR0Sc8+ozCpN/ix2J/efmx+2M5WG4Co4j3nS2\n9QNoR2tFWFqAzX//k2loifu3mRL8nVh41etJBflsJmvNcv65+mfp1Y9iJdthJ61j\n/m0JFK1TAgMBAAECggEAETFtCsoygIkdrThes5BaYshzHeetxCQMNhypkhofm/Ce\nKWN6GYponT8sL+8oTjroc3kDY18NpnNnSqGLIx5MIjxjvdMgcvgzk7h8ERedyxl9\nQI/2m/uUWhmfdlBFRckSx4EUtanUCQi2t7hEUa8JSXqcM3aTFKUjBtc0ZHCDgHhI\naQgV5WeArfGJxjDxuMoyMkkjjlpOZ6MAIIAf8HEcymNaC9XEN4TSBs8snbt7ZdIt\nKfofR86qdaQwEKWWF1gpTsbl5TWfTAFLbRQu/NbS/x1N3PcJUn6CTJIaAo60iB5k\nOqY3A1Q45mYe6Cfc9TRuKUWBYpu2vn42RkMKVi00PQKBgQD6Sax3lemSwa3OIi8k\nEeWYtKn5N5zso0nB6nPhW0w7pNNRZDivJAVVJpcih7f2KDfKdPZqquu+lfVU70ta\n4znFf5NE40dzNqFcevJVCPMWBXRRQPYdOua54yiZLGNzc3bPbQobPAUru1l9v870\ncZo18JH9H7xlX7+DBl4txKeKxwKBgQDYShkUTB0laGU4FY8/ij2l3Y0eE68eazTS\n5atm3ZPdauY2viB8fXArqaxFVDJPAWBPp4IP259oS5Y66GaO/KxFvvOsvYhAZQG9\nfHrJa3gubu9Z+T8GpK+Hto7IPouwXARuhiptOR6s8XEtErht36uU+1Jinmkbk96m\n63vA2rRdFQKBgCAQiDPZ1M6kWWvrHTb1xABIRO5UnZoDYVOiga4BUEbj2t62hDyL\n1NMP2pTl5j92747UZS1NMF5+P6vd7D18ls4ihe9xXpn4CbwbVChouRu9HyW5uM4N\n2bk+zNiywxrrU/FG+uB6U/9CRTjC9fSDCUqXw1w2UKB8H8Ddc/tRElXJAoGBAMJ0\nc/HMsJOWNRJkR8K/ncdG1f3JgrLdfcNyW1SDN9Jkro9fBkQGXtfSlyBJn2VqflV+\n6y8orDuPYYSatsItJxEZqWiPijUi2pqqlJYMOiO89xI0RVbKr0lbdylPGjW3tQBN\nPU2vggXImJEGeKvH4TJzddFWTHdPzWjS5BMyTeA1AoGAAvlOdKCwSC5pYmZ+d0cm\nSThzxQfX2hiBqmqBDn5MMgtvzluBf/jz5RrdAAOiB6UmT8UXbOBrDV3WqXmnR/cY\npBK+kJD/Vcb07XbhpRTxplAGGr1yZal58F4P7iMEI6wN2N7E2J/w60vlPALAWtst\npxT9FYT8bjAvslId3Eck/uY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "esp32cam@eastern-lattice-269717.iam.gserviceaccount.com",
+  "client_id": "105746066218691824677",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/esp32cam%40eastern-lattice-269717.iam.gserviceaccount.com"
+}

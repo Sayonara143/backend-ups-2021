@@ -19,14 +19,6 @@ const userModel = new Schema({
     type: String,
     required: true
   },
-  linkWaterCold: {
-    type: String,
-    default: ''
-  },
-  linkWaterHot: {
-    type: String,
-    default: ''
-  },
   mode:{
     type:String,
     default: '1'
@@ -53,20 +45,7 @@ const deleteUserByLogin = (login)=>{
 const findUserByPhone = (phone) => {
   return UserModel.findOne({phone: phone}, {})
 }
-const findUserByLinkHot = (idSensor) => {
-  return UserModel.findOne({linkWaterHot: idSensor}, {})
-}
 
-const findUserByLinkCold = (idSensor) => {
-  return UserModel.findOne({linkWaterCold: idSensor}, {})
-}
-
-const UpdateUserLinkWaterHot = (phone, idSensor) => {
-	return UserModel.updateOne({phone: phone},{linkWaterHot: idSensor }, {upsert: false})
-}
-const UpdateUserlinkWaterCold = (phone, idSensor) => {
-	return UserModel.updateOne({phone: phone},{linkWaterCold: idSensor }, {upsert: false})
-}
 const UpdateUserSetMode = (phone, mode) => {
 	return UserModel.updateOne({phone: phone},{mode: mode }, {upsert: false})
 }
@@ -85,11 +64,7 @@ export{
     createUser,
     deleteUserByLogin,
     findUserByPhone,
-    UpdateUserLinkWaterHot,
-    UpdateUserlinkWaterCold,
     UpdateUserSetMode,
-    findUserByLinkCold,
-    findUserByLinkHot,
     //settings users change
     UpdateUsersPasswordHashSalt,
     deleteUsersByLogin

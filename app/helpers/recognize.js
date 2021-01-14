@@ -7,13 +7,13 @@ async function recognize (path) {
     // }
     )
     .then(async ({ data: { text } }) => {
-      let result
+      let status
       if (text == ''){
-        result = { status: 0 }
+        status = 0
       } else {
-        result = { text: text, status: 1}
+        status = 1
       }
-      return result
+      return {status: status, text: text}
     })
     .catch((err)=>{
       console.log(err)
