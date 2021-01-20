@@ -34,12 +34,12 @@ router.post('/:idSensor', multer({storage:storageConfig}).single('file'), async 
       res.sendStatus(400)
     } else {
       console.log('Фото пришло'.yellow)
-      const sensor = await SensorModelAPI.findSensorByIdSensor(idSensor)
-      const user = await UserModelAPI.findUserByPhone(sensor.userPhone)
+      const sensor = await SensorModelAPI.findSensorByIdSensor(String(idSensor))
       if(!sensor){
         deleteFile(String('public/sensor/' + path))
         res.status(409).json({info: 'датчик не опознан'})
-      } else{ 
+      } else{
+        const user = await UserModelAPI.findUserByPhone(sensor.userPhone)
         console.log('Датчик опознан'.yellow)
         await preparation(String('public/sensor/' + path))
         let result = await recognize(String('public/sensor/' + path))

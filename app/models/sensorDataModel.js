@@ -31,20 +31,24 @@ const createSensorData = (value, idSensor) => {
   return newSensorData.save()
 }
 
+const findAllByIdSensor = (id) => {
+  return sensorDataModel.find({idSensor:id}, {})
+}
 
 const findByValue = (value) => {
-  return TimeCode.findOne({value:value}, {})
+  return sensorDataModel.findOne({value:value}, {})
 }
 const findBySensorId = (idSensor) => {
-  return TimeCode.findOne({idSensor: idSensor}, {})
+  return sensorDataModel.findOne({idSensor: idSensor}, {})
 }
 const deleteBySensorId = (idSensor)=>{
-  return TimeCode.deleteMany({idSensor: idSensor}, {})
+  return sensorDataModel.deleteMany({idSensor: idSensor}, {})
 }
 
 
 export{
   findByValue,
+  findAllByIdSensor,
   createSensorData,
   deleteBySensorId,
   findBySensorId

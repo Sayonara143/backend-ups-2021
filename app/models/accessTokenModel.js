@@ -6,7 +6,7 @@ const getExpirationTime = () => {
     return Date.now() + expirationTime
 }
 // Schemas
-var accesToken = new Schema({
+const accessToken = new Schema({
 	value: {
 		type: String,
 		required: true
@@ -26,21 +26,21 @@ var accesToken = new Schema({
   }
 })
 
-const AccesToken = mongoose.model('AccesTokenUser', accesToken)
+const AccessToken = mongoose.model('AccessTokenModel', accessToken)
 
 const create = (token, userPhone) =>{
-  const newAccesToken = new AccesToken({
+  const newAccessToken = new AccessToken({
     value:token,
     user: userPhone
   })
-  return newAccesToken.save()
+  return newAccessToken.save()
 }
 
 const findByValue = (value) => {
-  return AccesToken.findOne({value:value}, {})
+  return AccessToken.findOne({value:value}, {})
 }
 const deleteByUserPhone = (phone)=>{
-  return AccesToken.deleteOne({user: phone},{})
+  return AccessToken.deleteOne({user: phone},{})
 }
 
 export{

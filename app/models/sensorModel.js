@@ -29,22 +29,25 @@ const SensorModel = mongoose.model('SensorModel', sensorModel)
 
 const createSensor = (sensorData) =>{
     const newSensorModel = new SensorModel({
-        name: userData.name,
+        name: sensorData.name,
         typeSensor: sensorData.typeSensor,
         idSensor: sensorData.idSensor,
-        userPhone: userData.phone
+        userPhone: sensorData.userPhone
     })
     return newSensorModel.save()
 }
 
-const findSensorByIdSensor = (login) => {
-    return SensorModel.findOne({login: login}, {})
+const findSensorByIdSensor = (idSensor) => {
+    return SensorModel.findOne({idSensor: idSensor}, {})
 }
 const deleteSensorByIdSensor = (login)=>{
     return SensorModel.deleteOne({login: login}, {})
 }
 const findSensorByUserPhone = (userPhone) => {
   return SensorModel.findOne({userPhone: userPhone}, {})
+}
+const findSensorsByUserPhone = (userPhone) => {
+  return SensorModel.find({userPhone: userPhone}, {})
 }
 
 const UpdateSensorByUserPhoneAndIdSensor = (phone, idSensor) => {
@@ -54,6 +57,7 @@ const UpdateSensorByUserPhoneAndIdSensor = (phone, idSensor) => {
 
 export{
   findSensorByIdSensor,
+  findSensorsByUserPhone,
   createSensor,
   deleteSensorByIdSensor,
   findSensorByUserPhone,
