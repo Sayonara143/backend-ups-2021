@@ -1,13 +1,35 @@
 import * as SnesorDataModelAPI from '../models/sensorDataModel'
 import moment from 'moment'
 
-async function day(){
-  moment().add(-1, 'D')
+async function day(sd){
+  let predictData = []
+  if(sd.length === 1){
+    if(moment(new Date(data.date), 'MM')>moment().add(-1, 'd')){
+      predictData.push({
+        'date': data.date,
+        'value': data.value
+      })
+    }
+  }
+  if(sd.length === 0){
+    predictData = {info: 'данных нету'}
+  }
+  if(sd.length > 1){
+    sd.forEach(data => {
+      if(moment(new Date(data.date), 'MM')>moment().add(-1, 'D')){
+        predictData.push({
+          'date': data.date,
+          'value': data.value
+        })
+      }
+    })
+  }
+  return predictData
 }
 
 
 async function assembly (data, user){
-  const sensorData = await SnesorDataModelAPI.findBySensorId(data.idSensor)
+  const sensorData = await SnesorDataModelAPI.findAllByIdSensor(data.idSensor)
   if(String(data.mode) === 'day'){
     return await day(sensorData)
   }
