@@ -22,6 +22,9 @@ async function predict(period, date , sensorData, res) {
     });
     res.status(200).json({predict: response})
   })
+  process.stderr.on('data', (data) => {
+    console.log(data.toString())
+  })
   process.on('close', (code) =>{
     console.log(`code: ${code}`)
     if(code === 1){
@@ -55,11 +58,12 @@ router.post('/', async (req,res) => {
     }
     const sensorData = await SensorDataModelAPI.findAllByIdSensor(idSensor)
     sensorData.forEach(data => {
-      if(moment(new Date(data.date), 'MM')>moment().add(-1, 'M')){
+      if(moment(new Date(data.date), 'MM')>moment(moment().add(-1, 'M')).add(-1, 'd')){
         predictData.push(data)
       }
     })
     let arrayData = []
+    let responseData = []
     predictData.sort(function(a, b) {
       var c = new Date(a.date)
       var d = new Date(b.date)
@@ -73,12 +77,20 @@ router.post('/', async (req,res) => {
       if(firstData< lastData){
         arrayData.push(element.value)
       }
-
       
     }
     arrayData.push(predictData[predictData.length-1].value)
+    for (let i = 0; i < arrayData.length-1; i++) {
+      const element = Number(arrayData[i])
+      const elementNext = Number(arrayData[i+1])
+      responseData.push(String(elementNext-element))
+    }
     console.log(arrayData)
-    await predict(period, 0, arrayData, res)
+    console.log(responseData)
+    if(responseData.length<30)
+      res.status(409).json({"info": 'недостачно данных'})
+    else
+      await predict(period, 0, responseData, res)
   } catch (err) {
     console.error(err);
     res.status(500).json({error: "sorry, the server crashed"})
