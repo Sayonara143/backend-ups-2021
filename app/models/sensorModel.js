@@ -32,7 +32,8 @@ const createSensor = (sensorData) =>{
         name: sensorData.name,
         typeSensor: sensorData.typeSensor,
         idSensor: sensorData.idSensor,
-        userPhone: sensorData.userPhone
+        userPhone: sensorData.userPhone,
+        ticket: sensorData.ticket
     })
     return newSensorModel.save()
 }

@@ -41,7 +41,7 @@ const startServer = async () =>{
   
   const server = http.createServer(app)
   
-  server.listen(config.server.port,'10.62.4.91', async ()=>{
+  server.listen(config.server.port, async ()=>{
     console.log('[SERVER] start'.white)
   })
   // let dataToSend =''

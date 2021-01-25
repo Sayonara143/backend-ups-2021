@@ -126,6 +126,31 @@ async function custom(from, to, sd){
   let predictData = []
   let responseData = []
   let arrayData = []
+  if(Number(to.split('-')[2]) === Number(from.split('-')[2])){
+    const dateFrom = moment(moment(new Date(from), 'MM')).add(-1, 'd')
+    const dateTo = moment(moment(new Date(to), 'MM')).add(+1, 'd')
+    if(sd.length > 1){
+      sd.forEach(data => {
+        if((moment(new Date(data.date), 'MM')) > dateFrom){
+          if((moment(new Date(data.date), 'MM')) < dateTo){
+            predictData.push({
+              'date': data.date,
+              'value': data.value
+            })
+          }
+        }
+      })
+      for (let i = 0; i < predictData.length-1; i++) {
+        const element = predictData[i]
+        const elementNext = predictData[i+1]
+        responseData.push({
+          'date': elementNext.date, 
+          'value': elementNext.value-element.value
+        })
+      }
+      return responseData
+    }
+  }
   const dateFrom = moment(new Date(from), 'MM')
   const dateTo = moment(new Date(to), 'MM')
   if(sd.length > 1){
@@ -160,10 +185,16 @@ async function custom(from, to, sd){
     const element = arrayData[i]
     const elementNext = arrayData[i+1]
     responseData.push({
-      'date': elementNext.date,
+      'date': elementNext.date, 
       'value': elementNext.value-element.value
     })
-
+    // predictData = []
+    // let summa = 0
+    // for (let i = 0; i < responseData.length; i++) {
+    //   const element = responseData[i]
+    //   summa = 
+      
+    // }
     
   }
   return responseData

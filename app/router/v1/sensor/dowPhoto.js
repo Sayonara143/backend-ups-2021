@@ -36,18 +36,18 @@ router.post('/:idSensor', multer({storage:storageConfig}).single('file'), async 
       console.log('Фото пришло'.yellow)
       const sensor = await SensorModelAPI.findSensorByIdSensor(String(idSensor))
       if(!sensor){
-        deleteFile(String('public/sensor/' + path))
+        //deleteFile(String('public/sensor/' + path))
         res.status(409).json({info: 'датчик не опознан'})
       } else{
         const user = await UserModelAPI.findUserByPhone(sensor.userPhone)
         console.log('Датчик опознан'.yellow)
-        await preparation(String('public/sensor/' + path))
+        //await preparation(String('public/sensor/' + path))
         let result = await recognize(String('public/sensor/' + path))
 
         if(result.status === 1){
           await SensorDataAPI.createSensorData(result.text, idSensor)
         }
-        await deleteFile(String('public/sensor/' + path))
+        //await deleteFile(String('public/sensor/' + path))
         console.log(`${result.status}:${user.mode}:${result.text}`.yellow)
         res.send(`${result.status}:${configMode(user.mode)}`)
       }

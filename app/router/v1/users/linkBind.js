@@ -6,7 +6,7 @@ import * as SensorModelAPI from '../../../models/sensorModel'
 
 let data
 const checkInput = (input) => {
-  if (input.idSensor === null ) {
+  if (input.idSensor === null || input.name === null || input.ticket === null || input.typeSensor === null) {
     return false
   }
   else return true
@@ -19,7 +19,7 @@ router.post('/', async (req,res) => {
     return
   }
 
-  const { idSensor, name, typeSensor } = data
+  const { idSensor, name, typeSensor, ticket } = data
  
   try {
     const user = req.user
@@ -27,7 +27,8 @@ router.post('/', async (req,res) => {
       name: name,
       userPhone: user.phone,
       idSensor: idSensor,
-      typeSensor: typeSensor
+      typeSensor: typeSensor,
+      ticket: ticket
     }
     await SensorModelAPI.createSensor(newSensorData)
     res.sendStatus(200)
